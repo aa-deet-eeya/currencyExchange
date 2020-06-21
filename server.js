@@ -1,8 +1,10 @@
 //To read the .env files
 require('dotenv').config() ;
 
+const bodyParser  = require('body-parser') ;
 const express = require('express') ;
-const { getRates } = require('./lib/fixer-service.js') ;
+const { getRates , getSymbols } = require('./lib/fixer-service.js') ;
+const { convertCurrency } = require('./lib/free-currency-service.js') ;
 
 
 const app = express() ;
@@ -63,6 +65,46 @@ app.get('/api/rates' , async(req , res)=>{
 }) ;
 
 
+app.get('/api/symbols', async(req , res)=>{
+    try{
+        const data = await getSymbols() ;
+        res.setHeader('Content-Type' , 'application/json') ;
+        res.send(JSON.stringify(data)) ;
+    }
+    catch (err){
+        errorHandler(err , req ,res) ;
+    }
+} ); 
+
+
+//Using bodyParser middleware to process req.body 
+app.use(bodyParser.urlencoded({
+    extended : true 
+})) ;
+
+app.use(bodyParser.json()) ;
+
+
+app.post('/api/convert' , async(req ,res)=>{
+    try{
+        const { from ,to } = req.body ;
+        const data = await convertCurrency( from, to) ;
+        res.setHeader('Content-Type', 'application/json') ;
+        res.send(data) ;
+        //console.log(data) ; 
+    } catch (err){
+        errorHandler( err, req ,res ) ;
+    }
+
+} ) ; 
+
+//const test = async()=> {
+//    const data = await convertCurrency('USD' , 'KES') ;
+//    console.log(data) ;
+//
+//} ;
+//
+//test() ;
 
 //Routing 
 app.use((req ,res)=>{

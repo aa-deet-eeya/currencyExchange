@@ -54,9 +54,66 @@ window.addEventListener('load', ()=>{
         }
     }) ;
 
-    router.add('/exchange' , ()=>{
+    //router.add('/exchange' , ()=>{
+    //    let html = exchangeTemplate() ;
+    //    el.html(html); 
+    //}) ;
+
+    const getConversionResults = async()=> {
+        const from = $('#from').val() ;
+        const to = $('#to').val() ;
+        const amount = $('#amount').val() ;
+
+        try {
+            const response = await api.post('/convert' , { from, to} ) ;
+            const { rate } = response.data ;
+            const result  = rate*amount ;
+            $('#result').html(`${to}${result}`) ;
+        } catch (err) {
+            showError(err) ;
+        } finally {
+            $('#result-segment').removeClass('loading') ;
+        }
+
+    }
+
+    const convertRatesHandler = ()=> {
+        if($('.ui.form').form('is valid')) {
+            $('.ui.error.message').hide() ;
+            $('#result-segment').addClass('loading') ;
+            getConversionResults() ;
+
+            return false ;
+        }
+
+        return true ;
+    } ;
+
+
+    router.add('/exchange', async()=>{
         let html = exchangeTemplate() ;
-        el.html(html); 
+        el.html(html) ;
+        try {
+            const response = await api.get('/symbols') ;
+            const { symbols } = response.data ;
+            html = exchangeTemplate({ symbols }) ;
+            el.html(html) ;
+
+            $('.loading').removeClass('loading') ;
+            $('.ui.form').form({
+                fields : {
+                    from : 'empty' ,
+                    to : 'empty' ,
+                    amount : 'decimal' ,
+                } ,
+            }) ;
+
+            $('.submit').click(convertRatesHandler) ;
+
+        } catch(err) {
+             showError(err) ; 
+        }
+             
     }) ;
 
     router.add('/historical', ()=>{
