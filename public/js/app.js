@@ -25,9 +25,33 @@ window.addEventListener('load', ()=>{
         } ,
     }) ;
 
-    router.add('/' , ()=>{
+    
+    const api = axios.create({
+        baseURL : 'http://localhost:4000/api',
+        timeout: 5000 ,
+    }) ;
+
+    const showError = error=>{
+        const { title , message} = error.response.data ;
+        const html = errorTemplate({ color: 'red' , title , message}) ;
+        el.html(html) ;
+    } ;
+
+
+    router.add('/' , async()=>{
         let html = ratesTemplate() ;
         el.html(html) ;
+        try {
+            const response = await api.get('/rates') ;
+            const { base, date, rates} = response.data ;
+
+            html = ratesTemplate({base, date , rates}) ;
+            el.html(html) ;
+        } catch(error) {
+            showError(error) ;
+        } finally {
+            $('.loading').removeClass('loading') ;
+        }
     }) ;
 
     router.add('/exchange' , ()=>{
