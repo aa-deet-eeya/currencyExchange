@@ -1,4 +1,6 @@
 //const { Router } = require("express");
+require('dotenv').config() ;
+const PORT = process.env.PORT || 3000 ; 
 
 window.addEventListener('load', () => {
     const el = $('#app');
@@ -25,9 +27,9 @@ window.addEventListener('load', () => {
         },
     });
 
-
+    
     const api = axios.create({
-        baseURL: 'http://localhost:4000/api',
+        baseURL: `http://localhost:${PORT}/api`,
         timeout: 5000,
     });
 
