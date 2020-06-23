@@ -3,7 +3,7 @@ require('dotenv').config() ;
 
 const bodyParser  = require('body-parser') ;
 const express = require('express') ;
-const { getRates , getSymbols } = require('./lib/fixer-service.js') ;
+const { getRates , getHistorical ,getSymbols } = require('./lib/fixer-service.js') ;
 const { convertCurrency } = require('./lib/free-currency-service.js') ;
 
 
@@ -88,6 +88,7 @@ app.use(bodyParser.json()) ;
 app.post('/api/convert' , async(req ,res)=>{
     try{
         const { from ,to } = req.body ;
+        //console.log(req.body) ;
         const data = await convertCurrency( from, to) ;
         res.setHeader('Content-Type', 'application/json') ;
         res.send(data) ;
@@ -98,9 +99,27 @@ app.post('/api/convert' , async(req ,res)=>{
 
 } ) ; 
 
+
+app.post('/api/historical' ,async(req , res) => {
+    try{
+        const { date } = req.body ;
+        //console.log(req.body) ;
+        const data = await getHistorical(date) ;
+        res.setHeader('Content-Type' , 'application/json') ;
+        res.send(data) ;
+
+    } catch(err) {
+        errorHandler(err, req , res) ;
+    }
+
+
+}) ;
+////Test Block
 //const test = async()=> {
-//    const data = await convertCurrency('USD' , 'KES') ;
+//    const data = await getHistorical('2012-10-11') ;
+//    console.log(await getRates()) ;
 //    console.log(data) ;
+//    
 //
 //} ;
 //
