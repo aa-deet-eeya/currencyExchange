@@ -1,6 +1,6 @@
-//const { Router } = require("express");
-require('dotenv').config() ;
-const PORT = process.env.PORT || 3000 ; 
+////const { Router } = require("express");
+//require('dotenv').config() ;
+const port = 4000 ;
 
 window.addEventListener('load', () => {
     const el = $('#app');
@@ -29,7 +29,7 @@ window.addEventListener('load', () => {
 
     
     const api = axios.create({
-        baseURL: `http://localhost:${PORT}/api`,
+        baseURL: `http://localhost:${port}/api`,
         timeout: 5000,
     });
 
@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
             const response = await api.post('/convert', { from, to });
             const { rate } = response.data;
             const result = rate * amount;
-            $('#result').html(`${to} ${result}`);
+            $('#result').html(`${result}  ${to}`);
         } catch (err) {
             showError(err);
         } finally {
