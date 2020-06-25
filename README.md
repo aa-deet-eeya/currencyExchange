@@ -1,8 +1,8 @@
 # Currency Exchange
 
-## A single page application to view exchange rates
+## A single page application to view currency exchange rates
 
-This application is made primarily in Javascript, specifically it makes use jQuery, Semantic UI, Node.js and Express. 
+This application is made primarily in Javascript, specifically it makes use jQuery, Semantic UI, Node.js and Express. This application is mobile responsive as well.
 
 
 ### Dependencies
@@ -24,3 +24,31 @@ This application is made primarily in Javascript, specifically it makes use jQue
 
 * [Fixer.io](https://fixer.io/)
 * [Free Currency Converter](https://free.currencyconverterapi.com/)
+
+
+### Installation
+
+* clone the repo.
+* create a .env file with the same name with the following variables inside :
+
+    ```
+    API_KEY = <your Fixer.io api key>
+    PORT = 4000
+    TIMEOUT = 5000
+    SYMBOLS = INR,USD,EUR,GBP,AUD,BTC,KES,JPY,CNY 
+    FREE_CURRCONV_API = <your Free Currency Converter API key>
+    ```
+
+* Then go to your terminal inside the repo directory to install the npm modules or dependencies :
+    ```npm install
+    ```
+
+### Features
+
+This single page application web app follows monolithic code design, and is modular in nature. It also is mobile responsive and does so with the help of Semantic UI.
+The features are today's currency rates, historical rates and conversion rates.
+
+<p float="left">
+  <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_ExchangeRate.jpg" height="100" width="100" />
+   
+  </p>
