@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
             const response = await api.post('/convert', { from, to });
             const { rate } = response.data;
             const result = rate * amount;
-            $('#result').html(`${result}  ${to}`);
+            $('#result').html(`${result.toFixed(2)}  ${to}`);
         } catch (err) {
             showError(err);
         } finally {
