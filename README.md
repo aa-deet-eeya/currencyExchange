@@ -40,7 +40,8 @@ This application is made primarily in Javascript, specifically it makes use jQue
     ```
 
 * Then go to your terminal inside the repo directory to install the npm modules or dependencies :
-    ```npm install
+    ```
+    npm install
     ```
 
 ### Features
@@ -48,8 +49,18 @@ This application is made primarily in Javascript, specifically it makes use jQue
 This single page application web app follows monolithic code design, and is modular in nature. It also is mobile responsive and does so with the help of Semantic UI.
 The features are today's currency rates, historical rates and conversion rates.
 
+The mobile views is as follows :
 <p float="left">
   <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_ExchangeRate.jpg" width="30%"/>
    <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_currencyRate.jpg" width="30%"/>
    <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_historicalRates.jpg" width="30%"/>
   </p>
+
+
+And the web view is as follows :
+<img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/webView.jpg" width="100%">
+
+
+
+
+A live version of the web app can be found here at [Glitch](https://currencyexchange.glitch.me/)
