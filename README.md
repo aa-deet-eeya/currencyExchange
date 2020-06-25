@@ -49,6 +49,7 @@ This single page application web app follows monolithic code design, and is modu
 The features are today's currency rates, historical rates and conversion rates.
 
 <p float="left">
-  <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_ExchangeRate.jpg" width="100" />
-   
+  <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_ExchangeRate.jpg"/>
+   <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_currencyRate.jpg"/>
+   <img src="https://github.com/aa-deet-eeya/currencyExchange/blob/master/img/mobile_historicalRate.jpg"/>
   </p>
